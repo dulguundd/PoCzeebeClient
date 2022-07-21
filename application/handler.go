@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-type Handler struct {
+type Handlers struct {
 	zeebeClient *zbc.ClientConfig
 }
 
-func (h Handler) DeployResource(w http.ResponseWriter, r *http.Request) {
+func (h Handlers) DeployResource(w http.ResponseWriter, r *http.Request) {
 	var req DeployResourceRequest
 
 	err := json.NewDecoder(r.Body).Decode(&req)
@@ -40,7 +40,7 @@ func (h Handler) DeployResource(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h Handler) CreateInstance(w http.ResponseWriter, r *http.Request) {
+func (h Handlers) CreateInstance(w http.ResponseWriter, r *http.Request) {
 	var req DeployInstanceRequest
 
 	err := json.NewDecoder(r.Body).Decode(&req)

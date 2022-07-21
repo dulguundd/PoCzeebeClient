@@ -11,14 +11,17 @@ const bpmnFolderLocation = "./bpmn/"
 
 func Start() {
 	environment := getEnvironment()
-	h := Handler{newHandler(environment.zeebeConfig)}
+	h := Handlers{newHandler(environment.zeebeConfig)}
 	router := mux.NewRouter()
 
 	//define routes
 	router.HandleFunc("/new/resource", h.DeployResource).Methods(http.MethodPost)
 	router.HandleFunc("/new/instance", h.CreateInstance).Methods(http.MethodPost)
+	//Rabbitmq RPC
+	h.rpcCreateInstance()
 
 	//starting server
+	log.Println("starting")
 	log.Fatal(http.ListenAndServe(environment.serviceConfig.address, router))
 }
 

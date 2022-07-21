@@ -6,6 +6,7 @@ require (
 	github.com/camunda/zeebe/clients/go/v8 v8.0.3
 	github.com/dulguundd/logError-lib v1.0.2
 	github.com/gorilla/mux v1.8.0
+	github.com/streadway/amqp v1.0.0
 )
 
 require (
